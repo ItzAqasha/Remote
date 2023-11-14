@@ -223,7 +223,7 @@
 
 			httpGETCallback(url, function(error, respond) {
 				if (error) {
-					document.getElementById("status").innerHTML = "Error: " + error;
+					document.getElementById("status").innerHTML = error;
 					setInterval(function() {
 						document.documentElement.style.setProperty("--content-input", "none")
 						document.documentElement.style.setProperty("--content-tell", "flex")
@@ -238,7 +238,6 @@
 				}
 			});
 			console.log("url = " + url)
-			document.getElementById("status").innerHTML = "Sent";
 		}
 
 	</script>
