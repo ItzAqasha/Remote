@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Remote Control</title>
+	<style>
+:root {
+		--content-setup: block;
+		--content: none;
+		--content-input: none;
+		--content-tell: none;
+	}
+
+		.setup {
+			display: var(--content-setup);
+		}
+
+		.content {
+			display: var(--content);
+		}
+
+		.teller {
+			display: var(--content-tell);
+		}
+
+		.input {
+			display: var(--content-input);
+		}
+
+		.line {
+			height: 10px;
+			background-color: grey;
+			width: 100%;
+			justify-content: center;
+			align-items: center;
+			padding: 0px;
+			margin: 0px;
+		}
+
+		.banner {
+			color: white;
+			background-color: black;
+			margin: 0px;
+		}
+
+		.login {
+			display: flex;
+			justify-content: flex-end;
+			align-content: flex-end;
+		}
+
+		body {
+			margin: 0px;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner">
+		<h1>Remote Macrodroid</h1><div class="content">
+			<div class="input">
+				<input type="password" name="passcode" id="passcode" placeholder="Password">
+			</div>
+		</div>
+	</div>
+
+	<div class="setup">
+		<label for="did">
+			<h2>Device ID/Macrodroid Link</h2>
+		</label><br>
+		<div class="min2">
+			<input type="text" name="device-id" id="did" placeholder="eg. abcd-1234">
+			<br>
+			<input type="password" id="password" placeholder="Password" name="password">
+			<br>
+			<select name="type-select" id="dtype">
+				<option value="0">Device Id</option>
+				<option value="1">Macrodroid Link</option>
+			</select>
+		</div>
+		<p>
+			<button onclick="login()">Continue</button>
+			<div class="login">
+				<select name="" id="save">
+					<option value="1">Aqasha</option>
+					<option value="2">Suraya</option>
+					<option value="3">Hajiyah</option>
+				</select>
+				<button onclick="loginSave()">Open Save</button>
+			</div>
+		</p>
+	</div>
+
+	<div class="content">
+		<div class="teller">
+			<h1 id="status"></h1>
+		</div>
+		<div class="input">
+			<div class="min">
+				<label for="set">
+					<h3>set: </h3>
+				</label>
+				<p>
+					<input type="text" id="set" placeholder="Setting">
+					<button onclick="webhook()">Send Request</button>
+				</p>
+				<div class="line"></div>
+			</div>
+			<div class="in">
+				<label for="int1">
+					<p>
+						int1: <input type="number" id="int1" placeholder="Interger1">
+					</p>
+				</label>
+				<label for="int2">
+					<p>
+						int2: <input type="number" id="int2" placeholder="Interger2">
+					</p>
+				</label>
+				<label for="int3">
+					<p>
+						int3: <input type="number" id="int3" placeholder="Interger3">
+					</p>
+				</label>
+				<label for="int4">
+					<p>
+						int4: <input type="number" id="int4" placeholder="Interger4">
+					</p>
+				</label>
+				<label for="int5">
+					<p>
+						int5: <input type="number" id="int5" placeholder="Interger5">
+					</p>
+				</label>
+				<div class="line"></div>
+				<label for="str1">
+					<p>
+						str1: <input type="text" id="str1" placeholder="String1">
+					</p>
+				</label>
+				<label for="str2">
+					<p>
+						str2: <input type="text" id="str2" placeholder="String2">
+					</p>
+				</label>
+				<label for="str3">
+					<p>
+						str3: <input type="text" id="str3" placeholder="String3">
+					</p>
+				</label>
+				<label for="str4">
+					<p>
+						str4: <input type="text" id="str4" placeholder="String4">
+					</p>
+				</label>
+				<label for="str5">
+					<p>
+						str5: <input type="text" id="str5" placeholder="String5">
+					</p>
+				</label>
+			</div>
+		</div>
+	</div>
+	<script src="https://raw.githubusercontent.com/ItzAqasha/Remote/main/addon.js?token=GHSAT0AAAAAACKJYKX3NCVNXU34AQBP2PAWZKT2BIA"></script>
+	<script>
+		function inputValue(Id) {
+			return document.getElementById(Id).value;
+		}
+
+
+		var setup1 = true;
+		let ori = "0";
+		var password = "none";
+
+		function loginSave() {
+			if (inputValue("save") == 1) {
+				document.getElementById("did").value = "65e3980b-c6cd-4938-becc-044c4bac4c50";
+			} else if (inputValue("save") == 2) {
+				document.getElementById("did").value = "none";
+			} else {
+				document.getElementById("did").value = "none";
+			}
+		}
+		function login() {
+			if (document.getElementById("dtype").value == "0") {
+				ori = "https://trigger.macrodroid.com/" + document.getElementById("did").value + "/device";
+			} else {
+				ori = document.getElementById("did").value
+			}
+			document.getElementById("passcode").value = inputValue("password");
+			password = "?password=" + inputValue("password");
+			document.documentElement.style.setProperty("--content-setup", 'none');
+			document.documentElement.style.setProperty("--content", "flex");
+			document.documentElement.style.setProperty("--content-input", "flex")
+			console.log("login completed")
+			console.log("ori = " + ori)
+			setups = false;
+		}
+
+
+		var url = "0";
+
+		function webhook() {
+			document.documentElement.style.setProperty("--content-input", "none")
+			document.documentElement.style.setProperty("--content-tell", "flex")
+			document.getElementById("status").innerHTML = "Sending";
+			password = "?password=" + inputValue("passcode");
+			let set = "&set=" + inputValue("set");
+			let int1 = "&int1=" + inputValue("int1");
+			let int2 = "&int2=" + inputValue("int2");
+			let int3 = "&int3=" + inputValue("int3");
+			let int4 = "&int4=" + inputValue("int4");
+			let int5 = "&int5=" + inputValue("int5");
+			let str1 = "&str1=" + inputValue("str1");
+			let str2 = "&str2=" + inputValue("str2");
+			let str3 = "&str3=" + inputValue("str3");
+			let str4 = "&str4=" + inputValue("str4");
+			let str5 = "&str5=" + inputValue("str5");
+
+			let parameters = password + set + int1 + int2 + int3 + int4 + int5 + str1 + str2 + str3 + str4 + str5;
+			url = ori + parameters;
+
+			httpGETCallback(url, function(error, respond) {
+				if (error) {
+					document.getElementById("status").innerHTML = "Error: " + error;
+					setInterval(function() {
+						document.documentElement.style.setProperty("--content-input", "none")
+						document.documentElement.style.setProperty("--content-tell", "flex")
+					}, 7500)
+
+				} else {
+					document.getElementById("status").innerHTML = "Sent with " + respond;
+					setInterval(function() {
+						document.documentElement.style.setProperty("--content-input", "flex")
+						document.documentElement.style.setProperty("--content-tell", "none")
+
+					}, 2500)
+
+				}
+			});
+			console.log("url = " + url)
+			document.getElementById("status").innerHTML = "Sent";
+		}
+
+	</script>
+</body>
+</html>
