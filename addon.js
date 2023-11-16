@@ -95,9 +95,10 @@ function httpPOSTCallback(url, object = {}, callback) {
 function handleApiResponse(error, response, errorFunc, responseFunc) {
 	if (error) {
 		console.error("Error:", error);
-		if
+		errorFunc();
 	} else {
 		console.log("Response:", response);
+		responseFunc();
 	}
 }
 
