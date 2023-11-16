@@ -92,7 +92,7 @@ function httpPOSTCallback(url, object = {}, callback) {
 }
 
 //Handle API respone
-function handleApiResponse(error, response) {
+function handleApiResponse(error, response, errorFunc, responseFunc) {
 	if (error) {
 		console.error("Error:", error);
 	} else {
