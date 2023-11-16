@@ -81,9 +81,9 @@ function httpPOSTCallback(url, object = {}, callback) {
 	http.onreadystatechange = function () {
 		if (http.readyState === XMLHttpRequest.DONE) {
 			if (http.status >= 200 && http.status < 300) {
-				callback(null, http.responseText, true, false);
+				callback(null, http.responseText);
 			} else {
-				callback("Error: " + http.status, false, true);
+				callback("Error: " + http.status);
 			}
 		}
 	};
@@ -95,6 +95,7 @@ function httpPOSTCallback(url, object = {}, callback) {
 function handleApiResponse(error, response, errorFunc, responseFunc) {
 	if (error) {
 		console.error("Error:", error);
+		if
 	} else {
 		console.log("Response:", response);
 	}
