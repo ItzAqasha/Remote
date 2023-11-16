@@ -81,7 +81,7 @@ function httpPOSTCallback(url, object = {}, callback) {
 	http.onreadystatechange = function () {
 		if (http.readyState === XMLHttpRequest.DONE) {
 			if (http.status >= 200 && http.status < 300) {
-				callback(null, http.responseText);
+				callback(null, http.responseText, null, );
 			} else {
 				callback("Error: " + http.status, null);
 			}
