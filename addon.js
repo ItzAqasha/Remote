@@ -1,6 +1,23 @@
 //This is all the extra function
 //that'll make my life easier
 
+//HTML
+//Manipulate Value
+function valueHTML(value, index, typeOriginal = "id")
+	let type = typeOriginal.toLowerCase();
+	if (["id", "#", "i"].includes(type)) {
+		document.getElementById(index).value = value;
+	} else if (["class", ".", "c"].includes(type)) {
+				document.getElementByClass(index).value = value;
+	} else if (["name", "=", "n"]) {
+				document.getElementByName(index).value = value;
+	} else if (["tag", "<>", "t", "tagname"]) {
+				document.getElementByTagName(index).value = value;
+	}
+}
+
+	
+
 //Local Storage category
 //Check Support
 function storageSupport() {
@@ -113,11 +130,11 @@ String.prototype.reverse = function() {
 }
 
 //Create Random String
-function randomString(length, isNumber=true;) {
+function randomString(length, isNumber) {
 	if (isNumber) {
-	let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 	} else {
-			let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+		let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 	}
 	let randomString = '';
 	for (let i = 0; i < length; i++) {
@@ -150,7 +167,7 @@ function dateDiffInDays(date1, date2) {
 	return diffDays;
 }
 
-// Array Category (ChatGPT)
+// Array Category (Made with ChatGPT)
 // Double each element in the array
 function doubleArrayElements(arr) {
 	return arr.map(element => element * 2);
@@ -169,3 +186,4 @@ function sumArrayElements(arr) {
 
 // Function load successful 'teller'
 console.log("All of the add-on function loaded succesfully. System can now use these function");
+const isAddonFunction = true;
