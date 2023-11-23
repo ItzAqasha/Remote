@@ -113,7 +113,7 @@ String.prototype.reverse = function() {
 }
 
 //Create Random String
-function randomString(length, isNumber) {
+function randomString(length, isNumber=true;) {
 	if (isNumber) {
 	let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 	} else {
